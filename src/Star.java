@@ -2,17 +2,15 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Star {
-    public int x;
-    public int y;
+    public Vector2D position;
     public BufferedImage image;
     public int width;
     public int height;
-    public int velocityX;
+    public Vector2D velocityX;
 
     //constructor
-    public Star(int x, int y, int width, int height, BufferedImage image, int velocityX){
-        this.x = x;
-        this.y = y;
+    public Star(Vector2D position, int width, int height, BufferedImage image, Vector2D velocityX){
+        this.position = position;
         this.width = width;
         this.height = height;
         this.image = image;
@@ -20,10 +18,10 @@ public class Star {
     }
 
     public void run(){
-        this.x -= velocityX;
+        this.position.subtractBy(this.velocityX);
     }
 
     public void render(Graphics graphics){
-        graphics.drawImage(this.image, this.x, this.y, this.width, this.height, null);
+        graphics.drawImage(this.image, (int)this.position.x, (int)this.position.y, this.width, this.height, null);
     }
 }

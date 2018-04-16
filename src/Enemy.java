@@ -1,29 +1,32 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 public class Enemy {
-    public int x;
-    public int y;
+    public Vector2D position;
     public int width;
     public int height;
     public BufferedImage image;
-    public int volocityX;
-    public int volocityY;
+    public Vector2D volocityX;
+    public Vector2D volocityY;
 
-    public Enemy(int x, int y, BufferedImage image, int width, int height ,  int volocityY){
-        this.x = x;
-        this.y = y;
+
+    public Enemy(Vector2D position, BufferedImage image, int width, int height , Vector2D volocityX, Vector2D volocityY){
+        this.position = position;
         this.width = width;
         this.height = height;
         this.image = image;
+        this.volocityX = volocityX;
         this.volocityY = volocityY;
     }
 
     public void run(){
-        this.y -= volocityY;
+
+        this.position.subtractBy(this.volocityX);
+        this.position.subtractBy(this.volocityY);
     }
 
     public void render(Graphics graphics){
-        graphics.drawImage(this.image, this.x, this.y, this.width, this.height, null);
+        graphics.drawImage(this.image, (int)this.position.x, (int)this.position.y , this.width, this.height, null);
     }
 }
