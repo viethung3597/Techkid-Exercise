@@ -3,25 +3,21 @@ import java.awt.image.BufferedImage;
 
 public class Star {
     public Vector2D position;
-    public BufferedImage image;
-    public int width;
-    public int height;
-    public Vector2D velocityX;
+    public Vector2D velocity;
+    private ImageRenderer renderer;
 
     //constructor
-    public Star(Vector2D position, int width, int height, BufferedImage image, Vector2D velocityX){
-        this.position = position;
-        this.width = width;
-        this.height = height;
-        this.image = image;
-        this.velocityX = velocityX;
+    public Star(){
+        this.position = new Vector2D();
+        this.velocity = new Vector2D();
+        this.renderer = new ImageRenderer("resources/images/star.png", 5 , 6);
     }
 
     public void run(){
-        this.position.subtractBy(this.velocityX);
+        this.position.subtractBy(this.velocity);
     }
 
     public void render(Graphics graphics){
-        graphics.drawImage(this.image, (int)this.position.x, (int)this.position.y, this.width, this.height, null);
+        this.renderer.render(graphics, this.position);
     }
 }

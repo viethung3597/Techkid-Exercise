@@ -1,19 +1,14 @@
 import java.awt.*;
 
 public class Backgroud {
-    public int width;
-    public int height;
-    public Color color;
+    private Render render2;
 
-    public Backgroud(int width, int height, Color color) {
-        this.width = width;
-        this.height = height;
-        this.color = color;
+    public Backgroud() {
+        this.render2 = new Render(Color.BLACK, 1024, 600);
     }
 
-    public void render(Graphics g) {
-        g.setColor(this.color);
-        g.fillRect(0, 0, this.width, this.height);
+    public void render(Graphics graphics) {
+        this.render2.render(graphics);
     }
 }
 

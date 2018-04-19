@@ -10,89 +10,91 @@ import java.util.Random;
 
 public class GameCanvas extends JPanel {
 
+    private List<Star> stars;
 
     private BufferedImage backBuffered;
+    private Backgroud background;
     private Graphics graphics;
-    private List<Star> stars;
-    private List<Enemy> enemies;
     private Random random;
-    private int count;
-    private Backgroud backgrouds;
-    private Player player;
-
+    private int count = 0;
+    private int countEnemy = 0;
+    private List<Enemy> enemies;
+    public Player player;
 
     public GameCanvas() {
-        //set size
+        // Set size
         this.setSize(1024, 600);
-
-        //khoi tao back buffered
         this.setupBackBuffered();
         this.stars = new ArrayList<>();
-        this.enemies = new ArrayList<>();
         this.random = new Random();
-        this.player = new Player(new Vector2D(200, 200), Color.RED, new Vector2D(this.random.nextInt(2) + 1, 0), new Vector2D(0,this.random.nextInt(2) + 1));
-        this.setVisible(true);//cho phép window hiển thị
+        this.background = new Backgroud();
+        this.player = new Player();
+        this.player.position.set(200, 200);
+        this.enemies = new ArrayList<>();
+//        this.enemy = new Enemy(new Vector2D(1000, 400), this.loadImage("resources/images/circle.png"));
+        this.setVisible(true);
     }
-//    private void setupStar(){
-//        this.star = new Star(900 , 600 , 5 , 5 , this.loadImage("resources/images/star.png"), 2);
-//    }
 
     private void setupBackBuffered() {
-        this.backBuffered = new BufferedImage(1024, 600, BufferedImage.TYPE_4BYTE_ABGR);
+        this.backBuffered = new BufferedImage(1024, 600, BufferedImage.TYPE_4BYTE_ABGR); //khoi tao object
         this.graphics = this.backBuffered.getGraphics();
+        BufferedImage back2 = this.backBuffered; //dang tro cung den mot object (cung chua mot dia chi)
+        back2.setRGB(20, 20, 255);
     }
-
 
     @Override
     protected void paintComponent(Graphics g) {
-        // nơi vẽ toàn bộ mọi thứ
         g.drawImage(this.backBuffered, 0, 0, null);
-
     }
 
     public void renderAll() {
-        this.drawBackgroud();
-        this.player.render(graphics);
-        //star
+        this.background.render(this.graphics);
         this.stars.forEach(star -> star.render(graphics));
-        //enemy
+        this.player.render(this.graphics);
         this.enemies.forEach(enemy -> enemy.render(graphics));
         this.repaint();
     }
 
     public void runAll() {
-        //cap nhat moi thu
-        this.drawBackgroud();
-        //star
+        // cap nhat tat ca moi thu
         this.createStar();
         this.stars.forEach(star -> star.run());
-        //enemy
+        this.player.run();
         this.createEnemy();
-        this.enemies.forEach(enemy -> enemy.run());
+        this.runEnemies();
     }
 
     private void createEnemy() {
-        if (this.count == 30) {
-            Enemy enemy = new Enemy(new Vector2D(this.random.nextInt(1024), this.random.nextInt(600)),
-                    this.loadImage("resources/images/circle.png"),
-                    6,
-                    6,
-                    new Vector2D(this.random.nextInt(2) + 1, 0),
-                    new Vector2D(0,this.random.nextInt(2) + 1));
+        if (this.countEnemy == 50) {
+            Enemy enemy = new Enemy();
+            enemy.position.set(this.random.nextInt(1024), this.random.nextInt(600));
+            enemy.velocity.set(this.random.nextInt(2)+1 ,0);
             this.enemies.add(enemy);
-            this.count = 0;
+            this.countEnemy = 0;
         } else {
-            this.count += 1;
+            this.countEnemy += 1;
         }
+    }
+
+    private void runEnemies() {
+        this.enemies.forEach(enemy -> enemy.velocity.set(
+                player.position
+                        .subtract(enemy.position)
+                        .normalize()
+        ).multiply(2));
+        this.enemies.forEach(enemy -> enemy.run());
     }
 
     private void createStar() {
         if (this.count == 30) {
-            Star star = new Star(new Vector2D(1024, this.random.nextInt(600)),
-                    5,
-                    5,
-                    this.loadImage("resources/images/star.png"),
-                    new Vector2D(this.random.nextInt(2) + 1, 0));
+//            Star star = new Star(new Vector2D(1024, this.random.nextInt(600)),
+//                    5,
+//                    5,
+//                    this.loadImage("resources/images/star.png"),
+//                    new Vector2D(this.random.nextInt(2) + 1, 0));
+            Star star = new Star();
+            star.position.set(1024, this.random.nextInt(600));
+            star.velocity.set(this.random.nextInt(2)+1 ,0);
             this.stars.add(star);
             this.count = 0;
         } else {
@@ -100,19 +102,13 @@ public class GameCanvas extends JPanel {
         }
     }
 
-    private void drawBackgroud() {
-        this.backgrouds = new Backgroud(1024, 600, Color.BLACK);
-        this.backgrouds.render(this.graphics);
-    }
 
-    private BufferedImage loadImage(String path) {
-        try {
-            return ImageIO.read(new File(path));
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-
+//    private BufferedImage loadImage(String path) {
+//        try {
+//            return ImageIO.read(new File(path));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 }
