@@ -31,7 +31,6 @@ public class GameCanvas extends JPanel {
         this.player = new Player();
         this.player.position.set(200, 200);
         this.enemies = new ArrayList<>();
-//        this.enemy = new Enemy(new Vector2D(1000, 400), this.loadImage("resources/images/circle.png"));
         this.setVisible(true);
     }
 
@@ -87,11 +86,6 @@ public class GameCanvas extends JPanel {
 
     private void createStar() {
         if (this.count == 30) {
-//            Star star = new Star(new Vector2D(1024, this.random.nextInt(600)),
-//                    5,
-//                    5,
-//                    this.loadImage("resources/images/star.png"),
-//                    new Vector2D(this.random.nextInt(2) + 1, 0));
             Star star = new Star();
             star.position.set(1024, this.random.nextInt(600));
             star.velocity.set(this.random.nextInt(2)+1 ,0);
@@ -101,14 +95,4 @@ public class GameCanvas extends JPanel {
             this.count += 1;
         }
     }
-
-
-//    private BufferedImage loadImage(String path) {
-//        try {
-//            return ImageIO.read(new File(path));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
 }

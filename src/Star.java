@@ -1,10 +1,9 @@
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
-public class Star {
-    public Vector2D position;
+public class Star extends GameObject {
+
     public Vector2D velocity;
-    private ImageRenderer renderer;
+
 
     //constructor
     public Star(){
@@ -13,11 +12,13 @@ public class Star {
         this.renderer = new ImageRenderer("resources/images/star.png", 5 , 6);
     }
 
+    @Override
     public void run(){
+        super.run();
         this.position.subtractBy(this.velocity);
     }
+//    public void run(){
+//        this.position.subtractBy(this.velocity);
+//    }
 
-    public void render(Graphics graphics){
-        this.renderer.render(graphics, this.position);
-    }
 }

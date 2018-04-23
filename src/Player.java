@@ -1,13 +1,12 @@
 import java.awt.*;
-import java.util.Random;
 
-public class Player {
-    public Vector2D position;
-    private PolygonRenderer renderer;
+public class Player extends GameObject{
     public PlayerMove playerMove;
+    public PlayShoot playShoot;
 
     public Player() {
         this.position = new Vector2D();
+        this.playShoot = new PlayShoot();
         this.renderer = new PolygonRenderer(Color.RED,
                 new Vector2D(),
                 new Vector2D(0, 16),
@@ -17,13 +16,17 @@ public class Player {
     }
 
     public void run() {
+        super.run();
         this.playerMove.run(this);
-        this.renderer.angle = this.playerMove.angle;
+        ((PolygonRenderer)this.renderer).angle = this.playerMove.angle;
+        this.playShoot.run(this);
+        this.playShoot.bulletPlayers.forEach(bulletPlayer -> bulletPlayer.run());
 
     }
 
     public void render(Graphics graphics) {
-        this.renderer.render(graphics, this.position);
+        super.render(graphics);
+        this.playShoot.bulletPlayers.forEach(bulletPlayer -> bulletPlayer.render(graphics));
     }
 
 

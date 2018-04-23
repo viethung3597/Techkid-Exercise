@@ -4,11 +4,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class ImageRenderer {
+public class ImageRenderer implements Renderer{
     private BufferedImage image;
     private int width,height;
 
-    public ImageRenderer(String path, int width, int height) {
+    public ImageRenderer (String path, int width, int height) {
         this.image = this.loadImage(path);
         this.width = width;
         this.height = height;
@@ -23,6 +23,7 @@ public class ImageRenderer {
         }
     }
 
+    @Override
     public void render(Graphics graphics , Vector2D position){
         graphics.drawImage(this.image, (int)position.x, (int)position.y, this.width, this.height, null);
     }
