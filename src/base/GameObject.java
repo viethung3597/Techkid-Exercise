@@ -1,17 +1,21 @@
 package base;
 
 import action.Action;
+import physic.Physic;
+import physic.PhysicBody;
 import renderer.Renderer;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 public class GameObject {
     public Vector2D position;
     public Renderer renderer;
     public boolean isAlive = true;
     private List<Action> actions;
+    public Vector2D screenPosition;
 
     public GameObject() {
         this.position = new Vector2D();
@@ -30,4 +34,24 @@ public class GameObject {
     public void addAction(Action action) {
         this.actions.add(action);
     }
-}
+
+//    public static void add(GameObject gameObject) {
+//        boolean duplicate = false;
+//        for (GameObject g : gameObjects) {
+//            if (g == gameObject) {
+//                duplicate = true;
+//            }
+//        }
+//        if (!duplicate) {
+//            newGameObjects.add(gameObject);
+//            if (gameObject instanceof PhysicBody) {
+//                Physic.add((PhysicBody) gameObject);
+//            }
+//        } else {
+//            System.out.println("Duplicate objects");
+//        }
+//    }
+
+    }
+
+

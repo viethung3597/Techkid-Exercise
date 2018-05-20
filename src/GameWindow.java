@@ -1,4 +1,5 @@
 import input.KeyInput;
+import map.Map;
 
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
@@ -11,9 +12,10 @@ public class GameWindow extends JFrame {
 
     public GameWindow() {
         // set size cho window
-        this.setSize(1024, 600);
+        this.setSize(3000, 3000);
         this.setupGameCanvas();
         this.eventKeyboard();
+        addPlatforms();
         this.windowEvent();
         this.setVisible(true);
     }
@@ -22,6 +24,12 @@ public class GameWindow extends JFrame {
         this.gameCanvas = new GameCanvas();
         this.add(this.gameCanvas);
     }
+
+    private void addPlatforms() {
+        Map map = Map.load("resources/Map/MAP TLU.json");
+        map.generate();
+    }
+
 
     private void eventKeyboard() {
         this.addKeyListener(KeyInput.instance);

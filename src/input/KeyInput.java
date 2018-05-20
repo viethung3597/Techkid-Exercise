@@ -9,6 +9,8 @@ public class KeyInput implements KeyListener {
 
     public boolean upPressed = false;
     public boolean upReleased = false;
+    public boolean downPressed = false;
+    public boolean downReleased = false;
     public boolean leftPressed = false;
     public boolean leftReleased = false;
     public boolean rightPressed = false;
@@ -39,6 +41,9 @@ public class KeyInput implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             this.rightPressed = true;
         }
+        if (e.getKeyCode() == KeyEvent.VK_DOWN){
+            this.downPressed = true;
+        }
     }
 
     @Override
@@ -55,6 +60,9 @@ public class KeyInput implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             this.rightReleased = true;
         }
+        if (e.getKeyCode() == KeyEvent.VK_DOWN){
+            this.downReleased = true;
+        }
     }
 
     public void reset() {
@@ -66,5 +74,7 @@ public class KeyInput implements KeyListener {
         this.rightReleased = false;
         this.spacePressed = false;
         this.spaceReleased = false;
+        this.downPressed = false;
+        this.downReleased = false;
     }
 }
