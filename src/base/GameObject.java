@@ -1,6 +1,7 @@
 package base;
 
 import action.Action;
+import game.ViewPort;
 import physic.Physic;
 import physic.PhysicBody;
 import renderer.Renderer;
@@ -16,6 +17,7 @@ public class GameObject {
     public boolean isAlive = true;
     private List<Action> actions;
     public Vector2D screenPosition;
+    public ViewPort viewPort;
 
     public GameObject() {
         this.position = new Vector2D();
@@ -26,9 +28,13 @@ public class GameObject {
         this.actions.removeIf(action -> action.run(this));
     }
 
-    public void render(Graphics graphics) {
+    public void render(Graphics graphics, ViewPort viewPort) {
         if (this.renderer == null) return;
         this.renderer.render(graphics, this.position);
+
+//        if (this.renderer != null){
+//            renderer.render(graphics, viewPort.translate(this.screenPosition));
+//        }
     }
 
     public void addAction(Action action) {

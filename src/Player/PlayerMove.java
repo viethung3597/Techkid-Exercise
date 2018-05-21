@@ -21,13 +21,13 @@ public class PlayerMove  {
         if (player.position.x >= 3000) {
             KeyInput.instance.rightPressed = false;
         }
-        if (player.position.x <= 3000) {
+        if (player.position.x <= 20) {
             KeyInput.instance.leftPressed = false;
         }
         if (player.position.y > 3000) {
             KeyInput.instance.downPressed = false;
         }
-        if (player.position.y < 3000) {
+        if (player.position.y < 20) {
             KeyInput.instance.upPressed = false;
         }
     }

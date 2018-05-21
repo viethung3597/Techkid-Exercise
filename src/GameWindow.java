@@ -1,7 +1,9 @@
+import game.ViewPort;
 import input.KeyInput;
 import map.Map;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -26,7 +28,7 @@ public class GameWindow extends JFrame {
     }
 
     private void addPlatforms() {
-        Map map = Map.load("resources/Map/MAP TLU.json");
+        Map map = Map.load("resources/Map/Map TLU.json");
         map.generate();
     }
 
@@ -52,7 +54,7 @@ public class GameWindow extends JFrame {
                 this.gameCanvas.renderAll();
                 this.lastTime = currentTime;
             }
-
         }
     }
+
 }

@@ -1,6 +1,7 @@
 package base;
 
 
+import game.ViewPort;
 import physic.BoxCollider;
 import physic.Physic;
 import physic.PhysicBody;
@@ -46,11 +47,11 @@ public class GameObjectManager {
         this.tempList.clear();
     }
 
-    public void renderAll(Graphics graphics) {
+    public void renderAll(Graphics graphics, ViewPort viewPort) {
         this.list
                 .stream()
                 .filter(gameObject -> gameObject.isAlive)
-                .forEach(gameObject -> gameObject.render(graphics));
+                .forEach(gameObject -> gameObject.render(graphics, viewPort));
     }
 
     public <T extends GameObject> T recycle(Class<T> cls) {

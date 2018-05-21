@@ -29,14 +29,17 @@ public class Platform extends GameObject implements PhysicBody {
         System.out.println(platformType);
         Platform platform = new Platform();
         switch (platformType) {
-//            case 3:
-//                platform.renderer = new ImageRenderer(SpriteUtil.loadImage("assets/images/sprite/platform0000.png"));
-//                break;
-            case 34 :
-                platform.renderer = new ImageRenderer(SpriteUtil.loadImage("resources/images/stone.png"));
+            case 136:
+                platform.renderer = new ImageRenderer(SpriteUtil.loadImage("resources/images/Blackx.png"));
+                break;
+            case 4:
+                platform.renderer = new ImageRenderer(SpriteUtil.loadImage("resources/images/Backgroundx.png"));
+                break;
+            case 3:
+                platform.renderer = new ImageRenderer(SpriteUtil.loadImage("resources/images/Wallx.png"));
                 break;
             case 1:
-                platform.renderer = new ImageRenderer(SpriteUtil.loadImage("resources/images/wall.png"));
+                platform.renderer = new ImageRenderer(SpriteUtil.loadImage("resources/images/Stonex.png"));
                 break;
         }
         return platform;

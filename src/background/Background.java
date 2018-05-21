@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class Background extends GameObject{
 
-    public Background() {
-        this.renderer = new BackgroundRenderer(Color.BLACK,5000,5000);
-    }
+//    public Background() {
+//        this.renderer = new BackgroundRenderer(5000,5000);
+//    }
 }

@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<tileset name="Light grass" tilewidth="30" tileheight="30" tilecount="12" columns="3">
- <image source="../Light grass.png" width="96" height="128"/>
-</tileset>

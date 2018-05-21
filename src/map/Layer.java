@@ -26,7 +26,7 @@ public class Layer {
                 if (mapData != 0) {
 
                     Platform platform = Platform.create(mapData);
-                    platform.position.set(titleX * 30, titleY * 30);
+                    platform.position.set(titleX * 32, titleY * 32);
                     System.out.println(platform.position.x);
                     System.out.println(platform.position.y);
                     GameObjectManager.instance.add(platform);
